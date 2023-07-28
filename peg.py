@@ -203,7 +203,6 @@ def get_zscore(slope_series):
 # 只看RSRS因子值作为买入、持有和清仓依据，前版本还加入了移动均线的上行作为条件
 def get_timing_signal(context,stock):
     g.mean_diff_day = 5
-    # 30+5 天。不知道为何？
     close_data = attribute_history(g.ref_stock, g.mean_day + g.mean_diff_day, '1d', ['close'])
     high_low_data = attribute_history(g.ref_stock, g.N, '1d', ['high', 'low'])
 
