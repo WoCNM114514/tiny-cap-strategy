@@ -42,8 +42,9 @@ def trade(context):
     df = df.sort_values('inc_net_profit_year_on_year', ascending=False)[:50]
     stocks =df['code'].tolist()
     # 删除ST,北交
+    # 此处如果删除ST股，策略的净值将大打折扣，有待实际复盘确认为何策略不规避高退市风险的ST股
     stocks = filter_kcbj_stock(stocks)
-    stocks = filter_st_stock(stocks)
+    #stocks = filter_st_stock(stocks)
     
     price = history(count=100,unit='20d',field='close',security_list=stocks)
     diff = price[-20:].mean() -  price.mean()
